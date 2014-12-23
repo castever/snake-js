@@ -5,6 +5,8 @@ Version of classic snake game
 
 written in javascript using the HTML 5 canvas element, requestAnimationFrame, and underscore js library
 
+**This branch is the gh-pages branch that allows the game to be hosted on github pages for your enjoyment**
+
 Directions
 
 * use arrow keys to move
