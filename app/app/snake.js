@@ -55,7 +55,12 @@ define(function(require) {
         var self = this;
 
         //pacing for speed
-        self.time = performance.now();
+        if(performance) {
+            self.time = performance.now();
+        } else {
+            self.time = Date.now();
+        }
+        
         self.elapsedTime += self.time - (self.then || self.time);
         self.then = self.time;
         if (self.elapsedTime < self.speed) {
