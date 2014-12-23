@@ -55,7 +55,7 @@ define(function(require) {
         var self = this;
 
         //pacing for speed
-        if(performance) {
+        if(window.performance) {
             self.time = performance.now();
         } else {
             self.time = Date.now();
