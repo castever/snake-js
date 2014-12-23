@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Snake Game Clone">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>chadstever.com | software engineer | snake game clone</title>
+
+    <style type="text/css">
+    #game_area {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+    #snake_game {
+        width: 100%;
+        height: 100%;
+    }
+    #game_stats {
+        position: absolute;
+        width: 100%;
+        height: 8%;
+        bottom: 0;
+        opacity: 0.8;
+    }
+    </style>
+
+    <script data-main="app" src="lib/require.js"></script>
+
+</head>
+
+<body>
+    <h1>Snake</h1>
+
+    <div id="game_area">
+        <canvas id="snake_game" width="450" height="450"></canvas>
+        <div id="game_stats">
+
+            <div>
+                Score: <span id="score"></span>
+            </div>
+            <div>
+                High Score: <span id="highscore"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+    var gameArea = document.getElementById('game_area');
+    var widthToHeight = 1 / 1;
+
+    var newWidth = window.innerWidth;
+    var newHeight = window.innerHeight;
+
+    var newWidthToHeight = newWidth / newHeight;
+
+    if (newWidthToHeight > widthToHeight) {
+        // window width is too wide relative to desired game width
+        newWidth = newHeight * widthToHeight;
+        gameArea.style.height = newHeight + 'px';
+        gameArea.style.width = newWidth + 'px';
+    } else { // window height is too high relative to desired game height
+        newHeight = newWidth / widthToHeight;
+        gameArea.style.width = newWidth + 'px';
+        gameArea.style.height = newHeight + 'px';
+    }
+
+    gameArea.style.marginTop = (-newHeight / 2) + 'px';
+    gameArea.style.marginLeft = (-newWidth / 2) + 'px';
+
+    gameArea.style.fontSize = (newWidth / 450) + 'em';
+    </script>
+
+    <script src="http://code.createjs.com/soundjs-0.6.0.min.js"></script>
+</body>
+
+</html>
