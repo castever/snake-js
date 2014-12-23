@@ -7,6 +7,8 @@ written in javascript using the HTML 5 canvas element, requestAnimationFrame, an
 
 **This branch is the gh-pages branch that allows the game to be hosted on github pages for your enjoyment**
 
+http://castever.github.io/snake-js
+
 Directions
 
 * use arrow keys to move
