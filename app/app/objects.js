@@ -29,6 +29,27 @@ define(function(require) {
     	self.high_score_el.textContent = "" + high_score;
     };
 
+    function Audio(id, volume) {
+        var self = this;
+        self.audio_el = document.getElementById(id);
+        self.audio_el.volume = volume || 0.1;
+    };
+
+    Audio.prototype.play = function() {
+        var self = this;
+        self.audio_el.play();
+    };
+
+    Audio.prototype.reset = function() {
+        var self = this;
+        self.audio_el.currentTime = 0;
+    };
+
+    Audio.prototype.stop = function() {
+        var self = this;
+        self.audio_el.pause();
+    };
+
     /**
 		the basic building block for snakes and food
     */
@@ -68,6 +89,7 @@ define(function(require) {
     return {
         Block: Block,
         Canvas: Canvas,
-        Stats: Stats
+        Stats: Stats,
+        Audio: Audio
     };
 });
