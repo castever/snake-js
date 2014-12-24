@@ -5,6 +5,7 @@ define(function(require) {
     var Canvas = objects.Canvas;
     var Block = objects.Block;
     var Stats = objects.Stats;
+    var Audio = objects.Audio;
     var KeyboardController = require('./controller');
 
     /*
@@ -25,7 +26,13 @@ define(function(require) {
         //create the canvas object from the given id
         self.canvas = new Canvas(self.canvas_id);
         self.stats = new Stats(self.stats_id);
-        self.controller = new KeyboardController();
+        self.controller = new KeyboardController(self);
+
+        self.bgMusic = new Audio('audio_bg_music');
+        self.bgMusic.play();
+
+        self.explosionSFX = new Audio("audio_explosion");
+        self.pickUpSFX = new Audio('audio_pickup');
 
         self.canvas.canvas_el.addEventListener("mousedown", self.handleClick.bind(self), false);
     };
@@ -70,10 +77,6 @@ define(function(require) {
         //otherwise it will be window because of requestAnimationFrame
         self.loop_handle = requestAnimationFrame(self.render.bind(self));
 
-        if (self.controller.isSpaceDown()) {
-            self.paused = !self.paused;
-        }
-
         if (self.paused) return;
 
         self.stats.setScore(self.score, self.high_score);
@@ -104,6 +107,8 @@ define(function(require) {
         self.snake.update(direction);
 
         if (self.snake.collidesWith([self.food])) {
+            self.pickUpSFX.play();
+            //self.pickUpSFX.reset();
             self.snake.grow();
             self.food = self.createFood();
             self.score++;
@@ -112,6 +117,8 @@ define(function(require) {
         var head = self.snake.getHead();
         if (head.x < 0 || head.x > w / head.size || head.y < 0 || head.y > h / head.size || self.snake.collidesWithSelf()) {
             //game over
+            self.explosionSFX.play();
+
             self.endGame();
             return;
         }
