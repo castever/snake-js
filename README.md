@@ -7,7 +7,12 @@ written in javascript using the HTML 5 canvas element, requestAnimationFrame, an
 
 http://castever.github.io/snake-js
 
-Directions
+Build and Run
+* checkout the repository
+* run npm install
+* run gulp serve
+
+Game Directions
 
 * use arrow keys to move
 * "space" to pause
