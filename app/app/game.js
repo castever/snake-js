@@ -108,7 +108,6 @@ define(function(require) {
 
         if (self.snake.collidesWith([self.food])) {
             self.pickUpSFX.play();
-            //self.pickUpSFX.reset();
             self.snake.grow();
             self.food = self.createFood();
             self.score++;
@@ -118,7 +117,6 @@ define(function(require) {
         if (head.x < 0 || head.x > w / head.size || head.y < 0 || head.y > h / head.size || self.snake.collidesWithSelf()) {
             //game over
             self.explosionSFX.play();
-
             self.endGame();
             return;
         }
@@ -126,11 +124,20 @@ define(function(require) {
 
     Game.prototype.endGame = function() {
     	var self = this;
-        cancelAnimationFrame(self.loop_handle);        
+        cancelAnimationFrame(self.loop_handle);    
+        self.showStartScreen();    
         if(self.high_score < self.score) {
         	 window.localStorage.setItem('high_score', self.score);
         }
     }
+
+    Game.prototype.showStartScreen = function() {
+        var self = this;
+        var ctx = self.canvas.context;
+        ctx.fillText("Click To Start", self.canvas.width * 0.3, self.canvas.height * 0.3);
+        ctx.fillText("Arrows To Move", self.canvas.width * 0.3, self.canvas.height * 0.3 + 10);
+        ctx.fillText("Space To Pause", self.canvas.width * 0.3, self.canvas.height * 0.3 + 20);
+    };
 
     /*
 		create a food block randomly in the game

@@ -4,5 +4,5 @@ define(function(require) {
     var Game = require('./game').Game;
 
     var game = new Game("snake_game", "game_stats");
-    game.start();
+    game.showStartScreen();
 });
