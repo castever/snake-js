@@ -21,3 +21,4 @@ Directions
 
 *requires modern browsers*
 
+The Software Code is MIT; the music is copyright (C) Melanie Stever. All Rights Reserved. Used With Permission.
